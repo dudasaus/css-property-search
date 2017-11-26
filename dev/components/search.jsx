@@ -7,10 +7,13 @@ class Search extends React.Component {
     this.state = {
       value: "",
       cssProps: [],
-      searchCompletions: []
+      searchCompletions: [],
+      searchOpen: false
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.searchIcon = this.searchIcon.bind(this);
+    this.handleIconClick = this.handleIconClick.bind(this);
   }
 
   componentDidMount() {
@@ -31,10 +34,29 @@ class Search extends React.Component {
     this.setState({ value: e.target.value });
   }
 
+  handleIconClick(e) {
+    console.log('Icon click');
+    this.setState({
+      searchOpen: !this.state.searchOpen
+    })
+  }
+
+  searchIcon() {
+    let tmpClass = 'magic-icon-search';
+    if (this.state.searchOpen) {
+      tmpClass += ' close';
+    }
+    return (
+      <span className={tmpClass} onClick={this.handleIconClick}></span>
+    );
+  }
+
   render() {
     return (
       <div>
+        <h1>CSS Property Search</h1>
         <input type="text" value={this.state.value} onChange={this.handleChange} />
+        { this.searchIcon() }
       </div>
     );
   }

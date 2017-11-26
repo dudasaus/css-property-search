@@ -7,3 +7,46 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh; }
+
+/* SEARCH ICON */
+.magic-icon-search {
+  display: inline-block;
+  position: relative;
+  width: 120px;
+  height: 120px;
+  cursor: pointer; }
+  .magic-icon-search::before {
+    content: '';
+    display: inline-block;
+    width: 10%;
+    height: 40%;
+    background: #000;
+    position: absolute;
+    left: 75%;
+    top: 75%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    transition: all 0.5s; }
+  .magic-icon-search.close::before {
+    height: 80%;
+    left: 50%;
+    top: 50%; }
+  .magic-icon-search::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    border: 12px solid black;
+    border-radius: 50%;
+    top: 40%;
+    left: 40%;
+    transform: translate(-50%, -50%) rotate(0deg);
+    transition: all 0.5s; }
+  .magic-icon-search.close::after {
+    border-width: 6px;
+    border-radius: 0px;
+    width: 0px;
+    height: 70%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg); }
