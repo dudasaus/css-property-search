@@ -36,10 +36,13 @@ class Search extends React.Component {
   }
 
   handleIconClick(e) {
-    console.log('Icon click');
+    const searchOpen = !this.state.searchOpen;
     this.setState({
-      searchOpen: !this.state.searchOpen
-    })
+      searchOpen
+    });
+    if (searchOpen) {
+      this.searchInput.focus();
+    }
   }
 
   searchIcon() {
@@ -67,7 +70,13 @@ class Search extends React.Component {
         <h1>CSS Property Search</h1>
         <div className={ this.searchWrapperClass() }>
           <div className="search-bar">
-            <input type="text" value={this.state.value} onChange={this.handleChange} placeholder="Search..." />
+            <input
+              type="text"
+              value={this.state.value}
+              onChange={this.handleChange}
+              placeholder="Search..."
+              ref={(input) => { this.searchInput = input }}
+            />
           </div>
           { this.searchIcon() }
         </div>

@@ -13,8 +13,8 @@ body {
 .magic-icon-search {
   display: inline-block;
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
   cursor: pointer; }
   .magic-icon-search::before {
     content: '';
@@ -37,14 +37,14 @@ body {
     position: absolute;
     width: 50%;
     height: 50%;
-    border: 12px solid black;
+    border: 8px solid black;
     border-radius: 50%;
     top: 40%;
     left: 40%;
     transform: translate(-50%, -50%) rotate(0deg);
     transition: all 0.5s; }
   .magic-icon-search.close::after {
-    border-width: 6px;
+    border-width: 4px;
     border-radius: 0px;
     width: 0px;
     height: 70%;
@@ -55,24 +55,24 @@ body {
 /* SEARCH WRAPPER */
 .search-wrapper {
   transition: all 0.5s;
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
   position: relative; }
   .search-wrapper .magic-icon-search {
     position: absolute;
-    right: 6px; }
+    right: 4px; }
   .search-wrapper .search-bar {
     width: 0px;
     padding: 0px;
     position: absolute;
-    left: 6px;
+    left: 4px;
     top: 50%;
     transform: translateY(-50%);
     transition: inherit; }
   .search-wrapper.open {
-    width: 960px; }
+    width: 640px; }
     .search-wrapper.open .search-bar {
-      width: 828px; }
+      width: 552px; }
 
 /* SEARCH BAR */
 .search-bar input {
