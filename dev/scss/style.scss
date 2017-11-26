@@ -1,3 +1,7 @@
+/* COLORS */
+$gray: #ddd;
+
+/* GENERAL STUFF */
 body {
   margin: 0;
 }
@@ -6,7 +10,6 @@ body {
   margin: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
   min-height: 100vh;
 }
 
@@ -62,5 +65,48 @@ $ttime: 0.5s;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%) rotate(45deg);
+  }
+}
+
+/* SEARCH WRAPPER */
+.search-wrapper {
+  transition: all $ttime;
+  width: $size;
+  height: $size;
+  position: relative;
+  .magic-icon-search {
+    position: absolute;
+    right: $twentieth;
+  }
+  .search-bar {
+    width: 0px;
+    padding: 0px;
+    position: absolute;
+    left: $twentieth;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: inherit;
+  }
+  &.open {
+    width: 8 * $size;
+    .search-bar {
+      width: 7 * $size - 2 * $twentieth;
+    }
+  }
+}
+
+/* SEARCH BAR */
+$font-size: 36px;
+
+.search-bar {
+  input {
+    width: inherit;
+    border: none;
+    border-bottom: 2px solid $gray;
+    background: none;
+    font-size: $font-size;
+    &:focus {
+      outline: none;
+    }
   }
 }

@@ -14,6 +14,7 @@ class Search extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.searchIcon = this.searchIcon.bind(this);
     this.handleIconClick = this.handleIconClick.bind(this);
+    this.searchWrapperClass = this.searchWrapperClass.bind(this);
   }
 
   componentDidMount() {
@@ -51,12 +52,25 @@ class Search extends React.Component {
     );
   }
 
+  searchWrapperClass() {
+    if (this.state.searchOpen) {
+      return "search-wrapper open";
+    }
+    else {
+      return "search-wrapper";
+    }
+  }
+
   render() {
     return (
       <div>
         <h1>CSS Property Search</h1>
-        <input type="text" value={this.state.value} onChange={this.handleChange} />
-        { this.searchIcon() }
+        <div className={ this.searchWrapperClass() }>
+          <div className="search-bar">
+            <input type="text" value={this.state.value} onChange={this.handleChange} placeholder="Search..." />
+          </div>
+          { this.searchIcon() }
+        </div>
       </div>
     );
   }
