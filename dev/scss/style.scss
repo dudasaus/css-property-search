@@ -1,5 +1,6 @@
 /* COLORS */
 $gray: #ddd;
+$line-color: black;
 
 /* GENERAL STUFF */
 body {
@@ -99,14 +100,28 @@ $ttime: 0.5s;
 $font-size: 36px;
 
 .search-bar {
+  overflow: hidden;
+  font-size: $font-size;
+  font-family: sans-serif;
   input {
     width: inherit;
     border: none;
     border-bottom: 2px solid $gray;
     background: none;
-    font-size: $font-size;
+    font-size: inherit;
+    font-family: inherit;
     &:focus {
       outline: none;
     }
+  }
+  .fancy-line {
+    color: transparent;
+    position: absolute;
+    left: 0px;
+    top: calc(100% - 2px);
+    display: inline-block;
+    border-top: 2px solid $line-color;
+    font-size: inherit;
+    font-family: inherit;
   }
 }

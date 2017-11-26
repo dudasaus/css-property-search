@@ -77,6 +77,7 @@ class Search extends React.Component {
               placeholder="Search..."
               ref={(input) => { this.searchInput = input }}
             />
+          <span className="fancy-line">{this.state.value}</span>
           </div>
           { this.searchIcon() }
         </div>
