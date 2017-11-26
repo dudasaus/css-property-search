@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "./node_modules/.bin/webpack -d --watch",
     "build": "./node_modules/.bin/webpack -p",
-    "start": "./node_modules/.bin/http-server public/ -p 8080"
+    "start": "./node_modules/.bin/http-server public/ -p 8080",
+    "scss": "sass --sourcemap=none --watch ./dev/scss/style.scss:./public/css/style.css"
   },
   "author": "Austin Dudas",
   "license": "ISC",
