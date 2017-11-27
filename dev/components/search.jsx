@@ -85,6 +85,25 @@ class Search extends React.Component {
     }
   }
 
+  displaySearchCompletions() {
+    return (
+      <div className="search-completions">
+        { this.state.searchCompletions.map( (val, index) => {
+          if (index == this.state.currentCompletion) {
+            return (
+              <div key={index} className="completion active">{val}</div>
+            );
+          }
+          else {
+            return (
+              <div key={index} className="completion">{val}</div>
+            );
+          }
+        })}
+      </div>
+    );
+  }
+
   searchIcon() {
     let tmpClass = 'magic-icon-search';
     if (this.state.searchOpen) {
@@ -125,20 +144,7 @@ class Search extends React.Component {
           </div>
           { this.searchIcon() }
         </div>
-        <ul>
-          { this.state.searchCompletions.map( (val, index) => {
-            if (index == this.state.currentCompletion) {
-              return (
-                <li key={index}><strong>{val}</strong></li>
-              );
-            }
-            else {
-              return (
-                <li key={index}>{val}</li>
-              )
-            }
-          })}
-        </ul>
+        { this.displaySearchCompletions() }
       </div>
     );
   }
@@ -150,7 +156,7 @@ function findPotentialKeys(search, cssData, k = -1) {
   let keys = Object.keys(cssData);
   let output = [];
   for (let i = 0; i < keys.length; ++i) {
-    if (keys[i].substr(0, search.length) == search) {
+    if (keys[i].substr(0, search.length) == search && keys[i].length > search.length) {
       output.push(keys[i]);
       if (output.length == k) {
         break;

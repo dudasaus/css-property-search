@@ -29,7 +29,7 @@ body {
 }
 
 /* SEARCH ICON */
-$size: 80px;
+$size: 52px;
 $tenth: $size / 10;
 $twentieth: $size / 20;
 $color: $main-text;
@@ -139,5 +139,23 @@ $font-size: 36px;
     border-top: $tenth solid $line-color;
     font-size: inherit;
     font-family: inherit;
+  }
+}
+
+/* SEARCH COMPLETIONS */
+.search-completions {
+  background: rgba(#fff, 0.1);
+  .completion {
+    border: 1px solid $gray;
+    border-top: none;
+    border-left: 2px solid $main-text;
+    padding: 4px 8px;
+    &:nth-of-type(1) {
+      border-top: 1px solid $gray;
+    }
+    &.active {
+      border-left: 6px solid $main-text;
+      font-weight: bold;
+    }
   }
 }
