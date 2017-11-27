@@ -8,6 +8,7 @@ class Search extends React.Component {
       value: "",
       cssProps: [],
       searchCompletions: [],
+      currentCompletion: 0,
       searchOpen: false
     };
 
@@ -54,7 +55,25 @@ class Search extends React.Component {
         this.state.cssProps,
         5
       );
-      this.setState({ searchCompletions });
+      this.setState({
+        searchCompletions,
+        currentCompletion: -1
+      });
+    }
+    let currentCompletion = this.state.currentCompletion;
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (currentCompletion < this.state.searchCompletions.length - 1) {
+        ++currentCompletion;
+        this.setState({ currentCompletion });
+      }
+    }
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (currentCompletion > 0) {
+        --currentCompletion;
+        this.setState({ currentCompletion });
+      }
     }
   }
 
@@ -99,8 +118,17 @@ class Search extends React.Component {
           { this.searchIcon() }
         </div>
         <ul>
-          { this.state.searchCompletions.map( (x) => {
-            return (<li key={x}>{x}</li>);
+          { this.state.searchCompletions.map( (val, index) => {
+            if (index == this.state.currentCompletion) {
+              return (
+                <li key={index}><strong>{val}</strong></li>
+              );
+            }
+            else {
+              return (
+                <li key={index}>{val}</li>
+              )
+            }
           })}
         </ul>
       </div>
