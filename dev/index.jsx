@@ -9,7 +9,7 @@ class App extends React.Component {
         <h1 className="app-title">CSS Property Search</h1>
         <Search/>
       </div>
-    )
+    );
   }
 }
 

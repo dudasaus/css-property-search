@@ -8,7 +8,7 @@ class Search extends React.Component {
       value: "",
       cssProps: [],
       searchCompletions: [],
-      currentCompletion: 0,
+      currentCompletion: -1,
       searchOpen: false
     };
 
@@ -35,7 +35,10 @@ class Search extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({ value: e.target.value });
+    this.setState({
+      value: e.target.value,
+      currentCompletion: -1
+    });
   }
 
   handleIconClick(e) {
@@ -50,12 +53,17 @@ class Search extends React.Component {
 
   handleKey(e) {
     if (e.key === 'Enter') {
+      let value = this.state.value;
+      if (this.state.currentCompletion != -1) {
+        value = this.state.searchCompletions[this.state.currentCompletion];
+      }
       const searchCompletions = findPotentialKeys(
-        this.state.value,
+        value,
         this.state.cssProps,
         5
       );
       this.setState({
+        value,
         searchCompletions,
         currentCompletion: -1
       });
