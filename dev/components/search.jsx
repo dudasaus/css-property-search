@@ -4,6 +4,8 @@ class Search extends React.Component {
 
   constructor(props) {
     super(props);
+
+    // Set the initial state
     this.state = {
       value: "",
       cssProps: [],
@@ -12,12 +14,17 @@ class Search extends React.Component {
       searchOpen: false
     };
 
+    // Other vars
+    this.completionTimer = null;
+
+    // Function binding
     this.handleChange = this.handleChange.bind(this);
     this.searchIcon = this.searchIcon.bind(this);
     this.handleIconClick = this.handleIconClick.bind(this);
     this.searchWrapperClass = this.searchWrapperClass.bind(this);
     this.spacedValue = this.spacedValue.bind(this);
     this.handleKey = this.handleKey.bind(this);
+    this.updateCompletionsFunc = this.updateCompletionsFunc.bind(this);
   }
 
   componentDidMount() {
@@ -35,10 +42,15 @@ class Search extends React.Component {
   }
 
   handleChange(e) {
+    const value = e.target.value;
     this.setState({
-      value: e.target.value,
+      value,
       currentCompletion: -1
     });
+    if (this.completionTimer !== null) {
+      clearTimeout(this.completionTimer);
+    }
+    this.completionTimer = setTimeout(this.updateCompletionsFunc(value), 300);
   }
 
   handleIconClick(e) {
@@ -54,14 +66,11 @@ class Search extends React.Component {
   handleKey(e) {
     if (e.key === 'Enter') {
       let value = this.state.value;
+      let searchCompletions = this.state.searchCompletions;
       if (this.state.currentCompletion != -1) {
-        value = this.state.searchCompletions[this.state.currentCompletion];
+        value = searchCompletions[this.state.currentCompletion];
+        searchCompletions = [];
       }
-      const searchCompletions = findPotentialKeys(
-        value,
-        this.state.cssProps,
-        5
-      );
       this.setState({
         value,
         searchCompletions,
@@ -82,6 +91,20 @@ class Search extends React.Component {
         --currentCompletion;
         this.setState({ currentCompletion });
       }
+    }
+  }
+
+  updateCompletionsFunc(val) {
+    return () => {
+      let searchCompletions = [];
+      if (val) {
+          searchCompletions = findPotentialKeys(
+          val,
+          this.state.cssProps,
+          5
+        );
+      }
+      this.setState({ searchCompletions, currentCompletion: -1 });
     }
   }
 
