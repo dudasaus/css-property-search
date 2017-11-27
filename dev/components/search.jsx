@@ -16,6 +16,7 @@ class Search extends React.Component {
     this.handleIconClick = this.handleIconClick.bind(this);
     this.searchWrapperClass = this.searchWrapperClass.bind(this);
     this.spacedValue = this.spacedValue.bind(this);
+    this.handleKey = this.handleKey.bind(this);
   }
 
   componentDidMount() {
@@ -25,7 +26,7 @@ class Search extends React.Component {
       })
       .then((data) => {
         this.setState({cssProps: data});
-        console.log('Data retrieved');
+        console.log('CSS property data retrieved');
       })
       .catch((err) => {
         console.log(err);
@@ -43,6 +44,17 @@ class Search extends React.Component {
     });
     if (searchOpen) {
       this.searchInput.focus();
+    }
+  }
+
+  handleKey(e) {
+    if (e.key === 'Enter') {
+      const searchCompletions = findPotentialKeys(
+        this.state.value,
+        this.state.cssProps,
+        5
+      );
+      this.setState({ searchCompletions });
     }
   }
 
@@ -78,6 +90,7 @@ class Search extends React.Component {
               type="text"
               value={this.state.value}
               onChange={this.handleChange}
+              onKeyDown={this.handleKey}
               placeholder="Search..."
               ref={(input) => { this.searchInput = input }}
             />
@@ -85,9 +98,28 @@ class Search extends React.Component {
           </div>
           { this.searchIcon() }
         </div>
+        <ul>
+          { this.state.searchCompletions.map( (x) => {
+            return (<li key={x}>{x}</li>);
+          })}
+        </ul>
       </div>
     );
   }
 }
 
 module.exports = { Search };
+
+function findPotentialKeys(search, cssData, k = -1) {
+  let keys = Object.keys(cssData);
+  let output = [];
+  for (let i = 0; i < keys.length; ++i) {
+    if (keys[i].substr(0, search.length) == search) {
+      output.push(keys[i]);
+      if (output.length == k) {
+        break;
+      }
+    }
+  }
+  return output;
+}

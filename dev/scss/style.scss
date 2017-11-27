@@ -3,13 +3,17 @@
 $font-family: 'Ubuntu', sans-serif;
 
 /* COLORS */
-$gray: #ddd;
-$line-color: black;
+$background: #263238;
+$gray: #aaa;
+$line-color: yellow;
+$main-text: #fff;
 
 /* GENERAL STUFF */
 body {
   margin: 0;
   font-family: $font-family;
+  background: $background;
+  color: $main-text;
 }
 
 .app {
@@ -28,7 +32,7 @@ body {
 $size: 80px;
 $tenth: $size / 10;
 $twentieth: $size / 20;
-$color: #000;
+$color: $main-text;
 $ttime: 0.5s;
 
 .magic-icon-search {
@@ -60,7 +64,7 @@ $ttime: 0.5s;
     position: absolute;
     width: 50%;
     height: 50%;
-    border: $tenth solid black;
+    border: $tenth solid $color;
     border-radius: 50%;
     top: 40%;
     left: 40%;
@@ -120,8 +124,10 @@ $font-size: 36px;
     background: none;
     font-size: inherit;
     font-family: inherit;
+    color: $gray;
     &:focus {
       outline: none;
+      color: $main-text
     }
   }
   .fancy-line {

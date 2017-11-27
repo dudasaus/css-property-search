@@ -4,7 +4,9 @@
 /* GENERAL STUFF */
 body {
   margin: 0;
-  font-family: "Ubuntu", sans-serif; }
+  font-family: "Ubuntu", sans-serif;
+  background: #263238;
+  color: #fff; }
 
 .app {
   margin: 0;
@@ -28,7 +30,7 @@ body {
     display: inline-block;
     width: 10%;
     height: 40%;
-    background: #000;
+    background: #fff;
     position: absolute;
     left: 75%;
     top: 75%;
@@ -44,7 +46,7 @@ body {
     position: absolute;
     width: 50%;
     height: 50%;
-    border: 8px solid black;
+    border: 8px solid #fff;
     border-radius: 50%;
     top: 40%;
     left: 40%;
@@ -89,18 +91,20 @@ body {
   .search-bar input {
     width: inherit;
     border: none;
-    border-bottom: 8px solid #ddd;
+    border-bottom: 8px solid #aaa;
     background: none;
     font-size: inherit;
-    font-family: inherit; }
+    font-family: inherit;
+    color: #aaa; }
     .search-bar input:focus {
-      outline: none; }
+      outline: none;
+      color: #fff; }
   .search-bar .fancy-line {
     color: transparent;
     position: absolute;
     left: 0px;
     top: calc(100% - 8px);
     display: inline-block;
-    border-top: 8px solid black;
+    border-top: 8px solid yellow;
     font-size: inherit;
     font-family: inherit; }
