@@ -15,6 +15,7 @@ class Search extends React.Component {
     this.searchIcon = this.searchIcon.bind(this);
     this.handleIconClick = this.handleIconClick.bind(this);
     this.searchWrapperClass = this.searchWrapperClass.bind(this);
+    this.spacedValue = this.spacedValue.bind(this);
   }
 
   componentDidMount() {
@@ -64,10 +65,13 @@ class Search extends React.Component {
     }
   }
 
+  spacedValue() {
+    return this.state.value.replace(/ /g, '\u00a0');
+  }
+
   render() {
     return (
       <div>
-        <h1>CSS Property Search</h1>
         <div className={ this.searchWrapperClass() }>
           <div className="search-bar">
             <input
@@ -77,7 +81,7 @@ class Search extends React.Component {
               placeholder="Search..."
               ref={(input) => { this.searchInput = input }}
             />
-          <span className="fancy-line">{this.state.value}</span>
+          <span className="fancy-line">{ this.spacedValue() }</span>
           </div>
           { this.searchIcon() }
         </div>

@@ -1,3 +1,7 @@
+/* FONTS */
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+$font-family: 'Ubuntu', sans-serif;
+
 /* COLORS */
 $gray: #ddd;
 $line-color: black;
@@ -5,13 +9,19 @@ $line-color: black;
 /* GENERAL STUFF */
 body {
   margin: 0;
+  font-family: $font-family;
 }
 
-#app {
+.app {
   margin: 0;
   display: flex;
-  justify-content: center;
+  align-items: center;
   min-height: 100vh;
+  flex-direction: column;
+}
+
+.app-title {
+  text-align: center;
 }
 
 /* SEARCH ICON */
@@ -106,7 +116,7 @@ $font-size: 36px;
   input {
     width: inherit;
     border: none;
-    border-bottom: 2px solid $gray;
+    border-bottom: $tenth solid $gray;
     background: none;
     font-size: inherit;
     font-family: inherit;
@@ -118,9 +128,9 @@ $font-size: 36px;
     color: transparent;
     position: absolute;
     left: 0px;
-    top: calc(100% - 2px);
+    top: calc(100% - #{$tenth});
     display: inline-block;
-    border-top: 2px solid $line-color;
+    border-top: $tenth solid $line-color;
     font-size: inherit;
     font-family: inherit;
   }

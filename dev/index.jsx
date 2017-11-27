@@ -5,7 +5,10 @@ import { Search } from './components/search.jsx';
 class App extends React.Component {
   render() {
     return (
-      <Search/>
+      <div className="app">
+        <h1 className="app-title">CSS Property Search</h1>
+        <Search/>
+      </div>
     )
   }
 }

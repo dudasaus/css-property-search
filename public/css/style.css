@@ -1,13 +1,20 @@
+/* FONTS */
+@import url("https://fonts.googleapis.com/css?family=Ubuntu");
 /* COLORS */
 /* GENERAL STUFF */
 body {
-  margin: 0; }
+  margin: 0;
+  font-family: "Ubuntu", sans-serif; }
 
-#app {
+.app {
   margin: 0;
   display: flex;
-  justify-content: center;
-  min-height: 100vh; }
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column; }
+
+.app-title {
+  text-align: center; }
 
 /* SEARCH ICON */
 .magic-icon-search {
@@ -82,7 +89,7 @@ body {
   .search-bar input {
     width: inherit;
     border: none;
-    border-bottom: 2px solid #ddd;
+    border-bottom: 8px solid #ddd;
     background: none;
     font-size: inherit;
     font-family: inherit; }
@@ -92,8 +99,8 @@ body {
     color: transparent;
     position: absolute;
     left: 0px;
-    top: calc(100% - 2px);
+    top: calc(100% - 8px);
     display: inline-block;
-    border-top: 2px solid black;
+    border-top: 8px solid black;
     font-size: inherit;
     font-family: inherit; }
