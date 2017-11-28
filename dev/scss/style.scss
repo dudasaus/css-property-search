@@ -7,6 +7,7 @@ $background: #263238;
 $gray: #aaa;
 $line-color: yellow;
 $main-text: #fff;
+$accent: #6af;
 
 /* GENERAL STUFF */
 body {
@@ -144,6 +145,10 @@ $font-size: 36px;
 
 /* SEARCH COMPLETIONS */
 .search-completions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 7 * $size;
   background: rgba(#fff, 0.1);
   .completion {
     border: 1px solid $gray;
@@ -154,7 +159,9 @@ $font-size: 36px;
       border-top: 1px solid $gray;
     }
     &.active {
-      border-left: 6px solid $main-text;
+      border-left: 6px solid $accent;
+      background: rgba(#fff, 0.8);
+      color: #333;
       font-weight: bold;
     }
   }

@@ -9,6 +9,7 @@ class Search extends React.Component {
     this.state = {
       value: "",
       cssProps: [],
+      placeholder: "Loading...",
       searchCompletions: [],
       currentCompletion: -1,
       searchOpen: false
@@ -33,7 +34,10 @@ class Search extends React.Component {
         return res.json();
       })
       .then((data) => {
-        this.setState({cssProps: data});
+        this.setState({
+          cssProps: data,
+          placeholder: 'Search'
+        });
         console.log('CSS property data retrieved');
       })
       .catch((err) => {
@@ -160,14 +164,14 @@ class Search extends React.Component {
               value={this.state.value}
               onChange={this.handleChange}
               onKeyDown={this.handleKey}
-              placeholder="Search..."
+              placeholder={this.state.placeholder}
               ref={(input) => { this.searchInput = input }}
             />
           <span className="fancy-line">{ this.spacedValue() }</span>
           </div>
           { this.searchIcon() }
+          { this.displaySearchCompletions() }
         </div>
-        { this.displaySearchCompletions() }
       </div>
     );
   }
