@@ -79,9 +79,9 @@ body {
     transform: translateY(-50%);
     transition: inherit; }
   .search-wrapper.open {
-    width: 416px; }
+    width: 520px; }
     .search-wrapper.open .search-bar {
-      width: 358.8px; }
+      width: 462.8px; }
 
 /* SEARCH BAR */
 .search-bar {
@@ -114,8 +114,9 @@ body {
   position: absolute;
   top: 100%;
   left: 0;
-  width: 364px;
-  background: rgba(255, 255, 255, 0.1); }
+  width: 468px;
+  background: #3b4d56;
+  z-index: 5; }
   .search-completions .completion {
     border: 1px solid #aaa;
     border-top: none;
@@ -125,6 +126,32 @@ body {
       border-top: 1px solid #aaa; }
     .search-completions .completion.active {
       border-left: 6px solid #6af;
-      background: rgba(255, 255, 255, 0.8);
+      background: #fafbfc;
       color: #333;
       font-weight: bold; }
+
+/* Property table */
+.property {
+  margin-top: 48px;
+  width: 800px;
+  position: relative; }
+  .property h1 {
+    margin: 0;
+    padding: 8px 16px;
+    background: #6af;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.7); }
+  .property table {
+    width: 100%;
+    border-spacing: 0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.7); }
+    .property table tr {
+      background: #fff;
+      color: #333; }
+      .property table tr:nth-of-type(2n) {
+        background: #ddd; }
+    .property table th {
+      padding: 4px;
+      width: 20%; }
+    .property table td {
+      padding: 4px;
+      width: 80%; }

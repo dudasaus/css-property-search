@@ -104,9 +104,9 @@ $ttime: 0.5s;
     transition: inherit;
   }
   &.open {
-    width: 8 * $size;
+    width: 10 * $size;
     .search-bar {
-      width: 7 * $size - 2 * $twentieth;
+      width: 9 * $size - 2 * $twentieth;
     }
   }
 }
@@ -148,8 +148,9 @@ $font-size: 36px;
   position: absolute;
   top: 100%;
   left: 0;
-  width: 7 * $size;
-  background: rgba(#fff, 0.1);
+  width: 9 * $size;
+  background: lighten($background, 10%);
+  z-index: 5;
   .completion {
     border: 1px solid $gray;
     border-top: none;
@@ -160,9 +161,42 @@ $font-size: 36px;
     }
     &.active {
       border-left: 6px solid $accent;
-      background: rgba(#fff, 0.8);
+      background: lighten($background, 80%);
       color: #333;
       font-weight: bold;
+    }
+  }
+}
+
+/* Property table */
+.property {
+  margin-top: 48px;
+  width: 800px;
+  position: relative;
+  h1 {
+    margin: 0;
+    padding: 8px 16px;
+    background: $accent;
+    box-shadow: 0px 4px 4px rgba(#000, 0.7);
+  }
+  table {
+    width: 100%;
+    border-spacing: 0;
+    box-shadow: 0px 4px 4px rgba(#000, 0.7);
+    tr {
+      background: #fff;
+      color: #333;
+      &:nth-of-type(2n) {
+        background: #ddd;
+      }
+    }
+    th {
+      padding: 4px;
+      width: 20%;
+    }
+    td {
+      padding: 4px;
+      width: 80%;
     }
   }
 }

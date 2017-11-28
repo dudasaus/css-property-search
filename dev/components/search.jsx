@@ -9,6 +9,7 @@ class Search extends React.Component {
     this.state = {
       value: "",
       cssProps: [],
+      currentProperty: null,
       placeholder: "Loading...",
       searchCompletions: [],
       currentCompletion: -1,
@@ -26,6 +27,7 @@ class Search extends React.Component {
     this.spacedValue = this.spacedValue.bind(this);
     this.handleKey = this.handleKey.bind(this);
     this.updateCompletionsFunc = this.updateCompletionsFunc.bind(this);
+    this.displayProperty = this.displayProperty.bind(this);
   }
 
   componentDidMount() {
@@ -71,12 +73,15 @@ class Search extends React.Component {
     if (e.key === 'Enter') {
       let value = this.state.value;
       let searchCompletions = this.state.searchCompletions;
+      let currentProperty = null;
       if (this.state.currentCompletion != -1) {
         value = searchCompletions[this.state.currentCompletion];
         searchCompletions = [];
+        currentProperty = value;
       }
       this.setState({
         value,
+        currentProperty,
         searchCompletions,
         currentCompletion: -1
       });
@@ -131,6 +136,33 @@ class Search extends React.Component {
     );
   }
 
+  displayProperty() {
+    if (this.state.currentProperty === null) {
+      return null;
+    }
+    else {
+      const p = this.state.cssProps[this.state.currentProperty];
+      const display = Object.keys(p).map((key, i) => {
+        return (
+          <tr key={i}>
+            <th>{keyConversion[key]}</th>
+            <td>{p[key].toString()}</td>
+          </tr>
+        );
+      });
+      return (
+        <div className="property">
+          <h1>{this.state.currentProperty}</h1>
+          <table>
+            <tbody>
+              {display}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+  }
+
   searchIcon() {
     let tmpClass = 'magic-icon-search';
     if (this.state.searchOpen) {
@@ -172,6 +204,7 @@ class Search extends React.Component {
           { this.searchIcon() }
           { this.displaySearchCompletions() }
         </div>
+        { this.displayProperty() }
       </div>
     );
   }
@@ -191,4 +224,19 @@ function findPotentialKeys(search, cssData, k = -1) {
     }
   }
   return output;
+}
+
+const keyConversion = {
+  "syntax": "Syntax",
+  "media": "Media",
+  "inherited": "Inherited",
+  "animationType": "Animation type",
+  "percentages": "Percentages",
+  "groups": "Groups",
+  "initial": "Initial",
+  "appliesto": "Applies to",
+  "alsoAppliesTo": "Also applies to",
+  "computed": "Computed",
+  "order": "Order",
+  "status": "Status"
 }
