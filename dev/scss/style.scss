@@ -90,6 +90,7 @@ $ttime: 0.5s;
   width: $size;
   height: $size;
   position: relative;
+  margin: auto;
   .magic-icon-search {
     position: absolute;
     right: $twentieth;
@@ -151,6 +152,7 @@ $font-size: 36px;
   width: 9 * $size;
   background: lighten($background, 10%);
   z-index: 5;
+  box-shadow: 0px 4px 4px rgba(#000, 0.7);
   .completion {
     border: 1px solid $gray;
     border-top: none;

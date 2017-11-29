@@ -66,7 +66,8 @@ body {
   transition: all 0.5s;
   width: 52px;
   height: 52px;
-  position: relative; }
+  position: relative;
+  margin: auto; }
   .search-wrapper .magic-icon-search {
     position: absolute;
     right: 2.6px; }
@@ -116,7 +117,8 @@ body {
   left: 0;
   width: 468px;
   background: #3b4d56;
-  z-index: 5; }
+  z-index: 5;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.7); }
   .search-completions .completion {
     border: 1px solid #aaa;
     border-top: none;

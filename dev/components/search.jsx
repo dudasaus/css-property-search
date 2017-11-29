@@ -28,6 +28,9 @@ class Search extends React.Component {
     this.handleKey = this.handleKey.bind(this);
     this.updateCompletionsFunc = this.updateCompletionsFunc.bind(this);
     this.displayProperty = this.displayProperty.bind(this);
+    this.mouseEnterCompletionFunc = this.mouseEnterCompletionFunc.bind(this);
+    this.mouseEnterCompletionFunc = this.mouseEnterCompletionFunc.bind(this);
+    this.setCurrentProperty = this.setCurrentProperty.bind(this);
   }
 
   componentDidMount() {
@@ -73,18 +76,12 @@ class Search extends React.Component {
     if (e.key === 'Enter') {
       let value = this.state.value;
       let searchCompletions = this.state.searchCompletions;
-      let currentProperty = null;
       if (this.state.currentCompletion != -1) {
-        value = searchCompletions[this.state.currentCompletion];
-        searchCompletions = [];
-        currentProperty = value;
+        this.setCurrentProperty(searchCompletions[this.state.currentCompletion]);
       }
-      this.setState({
-        value,
-        currentProperty,
-        searchCompletions,
-        currentCompletion: -1
-      });
+      else {
+        this.setCurrentProperty(value);
+      }
     }
     let currentCompletion = this.state.currentCompletion;
     if (e.key === 'ArrowDown') {
@@ -96,7 +93,7 @@ class Search extends React.Component {
     }
     if (e.key === 'ArrowUp') {
       e.preventDefault();
-      if (currentCompletion > 0) {
+      if (currentCompletion > -1) {
         --currentCompletion;
         this.setState({ currentCompletion });
       }
@@ -117,23 +114,56 @@ class Search extends React.Component {
     }
   }
 
+  mouseEnterCompletionFunc(idx) {
+    return () => {
+      this.setState({
+        currentCompletion: idx
+      });
+    }
+  }
+
+  mouseClickCompletionFunc(name) {
+    return () => {
+      this.setCurrentProperty(name);
+    }
+  }
+
+  setCurrentProperty(name) {
+    const currentProperty = name;
+    if (this.state.cssProps[currentProperty]) {
+      this.setState({
+        currentProperty,
+        value: name,
+        currentCompletion: -1,
+        searchCompletions: []
+      });
+    }
+  }
+
   displaySearchCompletions() {
-    return (
-      <div className="search-completions">
-        { this.state.searchCompletions.map( (val, index) => {
-          if (index == this.state.currentCompletion) {
+    if (this.state.searchOpen) {
+      return (
+        <div className="search-completions">
+          { this.state.searchCompletions.map( (val, index) => {
+            const mef = this.mouseEnterCompletionFunc(index);
+            const mcf = this.mouseClickCompletionFunc(val);
             return (
-              <div key={index} className="completion active">{val}</div>
+              <div
+                key={index}
+                className={"completion" + ((index === this.state.currentCompletion) ? " active" : "")}
+                onMouseEnter={mef}
+                onClick={mcf}
+              >
+                {val}
+              </div>
             );
-          }
-          else {
-            return (
-              <div key={index} className="completion">{val}</div>
-            );
-          }
-        })}
-      </div>
-    );
+          })}
+        </div>
+      );
+    }
+    else {
+      return null;
+    }
   }
 
   displayProperty() {
