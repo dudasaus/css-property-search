@@ -268,5 +268,6 @@ const keyConversion = {
   "alsoAppliesTo": "Also applies to",
   "computed": "Computed",
   "order": "Order",
-  "status": "Status"
+  "status": "Status",
+  "stacking": "Stacking"
 }
